@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="iwsProjectApp">
+<head>
+    <title>IWS Project App</title>
+
+    <!-- favicon.ico and apple-touch-icon.png  -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+
+    <!-- CSS -->
+    <link href="css/demo.css" media="all" rel="stylesheet">
+    <link href="lib/visualcaptcha.css" media="all" rel="stylesheet">
+    <link href="lib/bootstrap/bootstrap.css" media="all" rel="stylesheet">
+
+</head>
+<body>
+    
+    <div class="wrap" ng-controller="RegisterController">
+        <h1 class="logo">Registration Form</h1>
+        <div class="pre-captcha-wrapper">
+            <div class="captcha-wrapper">
+                <h1>Fill in the form and Register</h1>
+                <div style="color:red">{{status.validationErrors}}</div>
+                <form name="frm" class="frm-sample" novalidate>
+                    <input type="text" class="form-control" placeholder="User Name" ng-model="model.userName" required>
+                    <input type="password" class="form-control" placeholder="Password" ng-model="model.password" required>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-sm-12">
+                            <kbd>Scan this QR Code using Google Authenticator or Authy</kbd>
+                                <br/>(Available on <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8" target="blank" class="btn btn-link">IOS</a>/<a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en" target="blank" class="btn btn-link">Android</a>/<a href="https://www.microsoft.com/en-us/store/apps/authenticator/9nblggh08h54" target="blank" class="btn btn-link">Windows phone</a>)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-offset-3">
+                            <div id="qrcode" ng-init="getqrcode()"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="text" class="form-control" placeholder="Enter Generated TOTP" ng-model="model.userKey" required>
+                    <a href="javascript:;;" class="submit" ng-click="submit()">Register</a>
+                    <br/><a href="#bottom">Click here to login</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wrap" ng-controller="LoginController">
+        <h1 class="logo">Login Form</h1>
+        <div class="pre-captcha-wrapper">
+            <div class="captcha-wrapper">
+                <h1>Fill in the form and submit it</h1>
+                <div style="color:red">{{status.validationErrors}}</div>
+                <form name="frm" class="frm-sample" novalidate>
+                    <input type="text" class="form-control" placeholder="User Name" ng-model="model.userName" required>
+                    <input type="password" class="form-control" placeholder="Password" ng-model="model.password" required>
+                    <div id="sample-captcha"></div>
+                    <div id="pattern-captcha"></div>
+                    <input type="text" class="form-control" placeholder="Enter TOTP Key" ng-model="model.userKey" required>
+                    <a href="javascript:;;" class="submit" ng-click="submit()">Login</a>
+                    <br/><a href="#top">Click here to Register</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script src="lib/visualcaptcha.js"></script>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="js/login-controller.js"></script>
+    <script src="js/register-controller.js"></script>
+    <script src="lib/qrcode.js"></script>
+    <script src="lib/bootbox.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $("a[href='#top']").click(function() {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                return false;
+            });
+
+            $("a[href='#bottom']").click(function() {
+                $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+                return false;
+            });
+        });
+
+    </script>
+</body>
+</html>

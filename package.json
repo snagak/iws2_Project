@@ -1,0 +1,27 @@
+{
+    "private": true,
+    "name": "iws-term-project",
+    "description": "Iws 2 Term Project. Powered by node.js and Express.js",
+    "keywords": [
+        "captcha",
+        "visualCaptcha",
+        "security",
+        "api",
+        "demo"
+    ],
+    "author": {
+        "name": "Nagarjuna Yendluri",
+        "email": "nyendlur@cs.uml.edu"
+    },
+    "dependencies": {
+        "express": "4.10.x",
+        "body-parser": "1.9.x",
+        "client-sessions": "0.7.x",
+        "visualcaptcha": "0.1.x",
+        "speakeasy":"*",
+        "mongojs":"*"
+    },
+    "scripts": {
+        "start": "node server.js"
+    }
+}
